@@ -84,14 +84,20 @@ static int16_t core_input_state(unsigned port, unsigned device, unsigned index,
       if (id == RETRO_DEVICE_ID_JOYPAD_MASK)
         return rjy_input_joypad[port].raw;
       else
-        return rjy_input_joypad[port].uraw << id;
+        return (rjy_input_joypad[port].uraw << id) ? 1 : 0;
     }
   }
 }
 
 int main(void)
 {
-  core.library = dlopen("sd:/retrojuuyon/cores/tamalibretro.dso", RTLD_NOW);
+  RJY_LIBRARY_T library;
+
+  library = dlopen("rom:/core.dso", RTLD_NOW);
+  if (!core.library)
+    return -1;
+  else if (rjy_core_open(&core, library) < 0)
+    return -1;
 
   while (1)
   {
