@@ -3,14 +3,20 @@ all: retrojuuyon.z64
 
 CFLAGS += \
 	-O2 -funroll-loops \
-	-std=c89 -Wall -Wextra
+	-std=c89 -Wall -Wextra \
+	-Ilibretro-common/include
 
 BUILD_DIR = build
 SRC_DIR = src
 include $(N64_INST)/include/n64.mk
 
 OBJS = \
-	$(BUILD_DIR)/src/main.o
+	$(BUILD_DIR)/src/audio.o \
+	$(BUILD_DIR)/src/core.o \
+	$(BUILD_DIR)/src/environment.o \
+	$(BUILD_DIR)/src/input.o \
+	$(BUILD_DIR)/src/main.o \
+	$(BUILD_DIR)/src/retrojuuyon.o
 
 # Get the current git version
 GIT_VERSION := $(shell git describe --tags --dirty --always)

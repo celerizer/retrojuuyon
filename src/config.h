@@ -1,0 +1,8 @@
+#ifndef RETROJUUYON_CONFIG_H
+#define RETROJUUYON_CONFIG_H
+
+#ifndef RETROJUUYON_SAFETY
+#define RETROJUUYON_SAFETY 1
+#endif
+
+#endif

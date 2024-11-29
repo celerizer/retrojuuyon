@@ -61,7 +61,7 @@ typedef struct
 
 int rjy_core_close(rjy_core_t *core);
 
-int rjy_core_open(rjy_core_t *core, RJY_LIBRARY_T library);
+int rjy_core_open(rjy_core_t *core, const char *path);
 
 int rjy_core_symbol(void *dst, RJY_LIBRARY_T library, const char *name);
 
