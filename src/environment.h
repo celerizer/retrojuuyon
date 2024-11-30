@@ -1,6 +1,8 @@
 #ifndef RETROJUUYON_ENVIRONMENT_H
 #define RETROJUUYON_ENVIRONMENT_H
 
-bool rjy_environment(unsigned cmd, void *data);
+#include "retrojuuyon.h"
+
+bool rjy_environment(rjy_ctx_t *rjy, unsigned cmd, void *data);
 
 #endif

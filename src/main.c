@@ -6,18 +6,30 @@ static rjy_ctx_t retrojuuyon;
 
 int main(void)
 {
-  rjy_ctx_t retrojuuyon;
   struct retro_game_info info;
 
-  RJY_LIBRARY_T library = dlopen("rom:/core.dso", RTLD_NOW);
-  if (library)
+  joypad_init();
+  console_init();
+  console_set_render_mode(RENDER_MANUAL);
+
+  memset(&retrojuuyon, 0, sizeof(retrojuuyon));
+
+  if (rjy_core_open(&retrojuuyon.core, "rom:/core.dso") < 0)
     return -1;
-  else if (rjy_core_open(&retrojuuyon.core, library) < 0)
-    return -1;
+  else
+  {
+    console_clear();
+    printf("retro_run: %p\n retro_init: %p",
+           retrojuuyon.core.retro_run,
+           retrojuuyon.core.retro_init);
+    console_render();
+  }
+
+  rjy_init(&retrojuuyon);
 
   info.data = NULL;
   info.size = 0;
-  info.path = "rom:/rom.bin";
+  info.path = "rom:/content.bin";
 
   if (!rjy_load_game(&retrojuuyon, info))
     printf("retro_load_game FAILED\n");

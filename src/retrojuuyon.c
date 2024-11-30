@@ -2,16 +2,31 @@
 
 #include "retrojuuyon.h"
 
+void rjy_init(rjy_ctx_t *rjy)
+{
+  if (rjy)
+    rjy->core.retro_init();
+}
+
 bool rjy_load_game(rjy_ctx_t *rjy, struct retro_game_info info)
 {
-  FILE *file;
-
-  file = fopen(info.path, "rb");
-  
-  if (file)
-    return true;
+  if (info.data && info.size)
+    return rjy->core.retro_load_game(&info);
   else
-    return false;
+  {
+    FILE *file;
+
+    file = fopen(info.path, "rb");
+
+    if (file)
+    {
+      /* Read data and size */
+      fclose(file);
+      return rjy->core.retro_load_game(&info);
+    }
+  }
+
+  return false;
 }
 
 void rjy_set_environment(rjy_ctx_t *rjy)
