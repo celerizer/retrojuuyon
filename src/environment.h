@@ -3,6 +3,8 @@
 
 #include "retrojuuyon.h"
 
-bool rjy_environment(rjy_ctx_t *rjy, unsigned cmd, void *data);
+extern rjy_ctx_t *rjy_current_context;
+
+bool rjy_environment(unsigned cmd, void *data);
 
 #endif

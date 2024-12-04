@@ -6,7 +6,6 @@
 #include "audio.h"
 #include "config.h"
 #include "core.h"
-#include "environment.h"
 #include "input.h"
 #include "video.h"
 
@@ -16,6 +15,12 @@ typedef struct
   rjy_input_t input;
   rjy_video_t video;
 } rjy_ctx_t;
+
+#include "environment.h"
+
+void rjy_get_system_av_info(rjy_ctx_t *rjy);
+
+void rjy_get_system_info(rjy_ctx_t *rjy);
 
 void rjy_init(rjy_ctx_t *rjy);
 

@@ -2,6 +2,18 @@
 
 #include "retrojuuyon.h"
 
+void rjy_get_system_av_info(rjy_ctx_t *rjy)
+{
+  if (rjy && rjy->core.retro_get_system_av_info)
+    rjy->core.retro_get_system_av_info(&rjy->core.av_info);
+}
+
+void rjy_get_system_info(rjy_ctx_t *rjy)
+{
+  if (rjy && rjy->core.retro_get_system_info)
+    rjy->core.retro_get_system_info(&rjy->core.system_info);
+}
+
 void rjy_init(rjy_ctx_t *rjy)
 {
   if (rjy)

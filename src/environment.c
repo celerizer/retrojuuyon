@@ -2,14 +2,18 @@
 
 #include "environment.h"
 
-bool rjy_environment(rjy_ctx_t *rjy, unsigned cmd, void *data)
+rjy_ctx_t *rjy_current = NULL;
+
+bool rjy_environment(unsigned cmd, void *data)
 {
-  switch (cmd)
+  if (!rjy_current)
+    return false;
+  else switch (cmd)
   {
   case RETRO_ENVIRONMENT_SET_ROTATION:
   {
     if (data)
-      rjy->video.rotation = *((unsigned*)data);
+      rjy_current->video.rotation = *((unsigned*)data);
     break;
   }
   default:

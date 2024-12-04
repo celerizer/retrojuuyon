@@ -16,7 +16,8 @@ OBJS = \
 	$(BUILD_DIR)/src/environment.o \
 	$(BUILD_DIR)/src/input.o \
 	$(BUILD_DIR)/src/main.o \
-	$(BUILD_DIR)/src/retrojuuyon.o
+	$(BUILD_DIR)/src/retrojuuyon.o \
+	$(BUILD_DIR)/src/video.o
 
 # Get the current git version
 GIT_VERSION := $(shell git describe --tags --dirty --always)
